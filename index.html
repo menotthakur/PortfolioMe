@@ -16,6 +16,44 @@
     font-family: serif;
     font-style: italic;
   }
+  
+  /* Smooth scrolling for the whole page */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Hover effects for social links */
+  .social-link {
+    transition: transform 0.3s ease;
+  }
+  .social-link:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Subtle animation for profile image */
+  .profile-image {
+    transition: all 0.5s ease;
+  }
+  .profile-image:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: scale(1.02);
+  }
+  
+  /* Project item hover effect */
+  .project-item {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+  }
+  .project-item:hover {
+    border-left: 3px solid #de1e4c;
+    padding-left: 5px;
+  }
+  
+  /* Image style for better presentation */
+  .content-image {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
   </style>
  </head>
  <body class="bg-white text-gray-800">
@@ -57,14 +95,14 @@
       Based in Hamirpur, Himachal Pradesh, I am actively seeking opportunities to apply my knowledge and skills in DevOps and cloud computing to contribute to innovative projects and continue growing professionally.
      </p>
      <div class="mt-4 flex flex-wrap gap-2 text-xs font-sans">
-      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100" href="https://www.linkedin.com/in/munish--thakur/" target="_blank">
+      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100 social-link" href="https://www.linkedin.com/in/munish--thakur/" target="_blank">
        <i class="fab fa-linkedin-in text-blue-700">
        </i>
        <span>
         LinkedIn
        </span>
       </a>
-      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100" href="https://github.com/menotthakur" target="_blank">
+      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100 social-link" href="https://github.com/menotthakur" target="_blank">
        <i class="fab fa-github text-gray-800">
        </i>
        <span>
@@ -111,7 +149,7 @@
          Technical projects I've worked on.
         </p>
         <ul class="list-disc list-inside mt-1 space-y-3">
-         <li>
+         <li class="project-item">
           <a class="text-blue-700 hover:underline" href="#">
            DevOps Implementation for Go Web App
           </a>
@@ -119,7 +157,7 @@
             Containerized a Golang web app with a multi-stage Dockerfile, deployed on AWS EKS using Kubernetes, Helm, and GitOps (ArgoCD) for automated CI/CD. Configured NGINX Ingress for external access.
           </p>
          </li>
-         <li>
+         <li class="project-item">
           <a class="text-blue-700 hover:underline" href="#">
            Cloud-Native Monitoring Application
           </a>
@@ -127,7 +165,7 @@
             Developed a Python-based monitoring application using Flask to track CPU and memory usage. Containerized with Docker and deployed on AWS EKS with automated scaling capabilities.
           </p>
          </li>
-         <li>
+         <li class="project-item">
           <a class="text-blue-700 hover:underline" href="#">
            Cloud Infrastructure Monitoring Automation
           </a>
@@ -195,7 +233,7 @@
     </section>
     <aside class="mt-8 lg:mt-0 flex-shrink-0 w-full max-w-xs rounded-2xl overflow-hidden">
      <!-- Profile image -->
-     <img src="images/profile.png" alt="Munish Thakur" class="w-full h-auto rounded-2xl object-cover">
+     <img src="images/profile.jpg" alt="Munish Thakur" class="w-full h-auto rounded-2xl object-cover profile-image">
     </aside>
    </main>
   </div>
