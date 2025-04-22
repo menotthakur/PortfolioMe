@@ -1,0 +1,57 @@
+Hamirpur, H.P 
+MUNISH THAKUR
+ GitHub
+ +91 6284589934 
+EDUCATION
+ VIT Bhopal University, M.P
+ Email 
+LinkedIn
+ May 2025
+ B.Tech in Computer Science and Engineering
+ CGPA: 8.74/10
+ TECHNICAL SKILLS
+ Programming Languages: C++, SQL, Python
+ DevOps Tools: Docker, Kubernetes, Git, Helm
+ Cloud Platforms: AWS (EKS, EC2, S3, Route 53, IAM, CloudWatch), GCP
+ EXPERIENCE
+ Verizon Cloud Computing Simulation– Forage (Virtual)
+ • Designed and evaluated three cloud security strategies, improving compliance efficiency .
+ January 2025
+ • Conducted security tests on cloud-native applications, ensuring 99.9% uptime and enforcing least-privilege access.
+ • Optimized configuration checks for cloud-based resources, reducing misconfigurations.
+ PROJECTS
+ DevOps Implementation for Go Web App
+ • Containerized a Golang web app with a multi-stage Dockerfile, deployed on AWS EKS using
+ Kubernetes, Helm, and GitOps (ArgoCD) for automated CI/CD.
+ October 2024
+ • Configured NGINX Ingress for external access and implemented Helm-based deployments for scalable
+ multi-environment support.
+ GitHub 
+Cloud-Native Monitoring Application
+ • Developed a Python-based monitoring application using Flask to track CPU and memory usage.
+ August 2024
+ • Containerized the application using Docker and stored images in AWS Elastic Container Registry (ECR).
+ • Deployed the application on AWS Elastic Kubernetes Service (EKS) with automated scaling.
+ • Utilized Boto3 to programmatically manage AWS resources like ECR and EKS.
+ • Achieved high availability and scalability by managing deployments and services with Kubernetes.
+ GitHub 
+Cloud Infrastructure Monitoring Automation
+ April 2024
+ • Automated AWS resource monitoring via a shell script, listing active EC2, S3 instances for cost optimization.
+ • Used AWS CLI to fetch resources, enforcing IAM least-privilege access and secure script execution.
+ • Enabled scheduled tracking with cron jobs, improving visibility into cloud usage.
+ GitHub 
+CERTIFICATIONS
+ AWS Certified Cloud Practitioner– AWS
+ Google Cloud Digital Leader Certification– Google Cloud
+ ACTIVITIES
+ Ground Team Co-Lead, Bit by BIT Club, VIT Bhopal University
+ Feb 2024– Feb 2027
+ Feb 2024– Feb 2027
+ • Led a 20-member team to organize a 500+ attendee tech event.
+ • Mentored junior members in project management, increasing team efficiency by 20%.
+ Head Boy, Kendriya Vidyalaya School
+ • Supervised a team of prefects, coordinating school events and leadership initiatives.
+ 2023
+ 2019
+ • Organized inter-school competitions, driving a 40% increase in student participation.
