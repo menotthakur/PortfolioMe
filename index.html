@@ -109,6 +109,23 @@
         GitHub
        </span>
       </a>
+      <!-- Style 1: Original Theme Color (Commented for now)
+      <a class="flex items-center space-x-1 border border-[#de1e4c] rounded px-3 py-1 hover:bg-[#de1e4c] hover:text-white transition-colors duration-300 social-link" href="assets/resume.pdf" download>
+       <i class="fas fa-file-download text-[#de1e4c] group-hover:text-white">
+       </i>
+       <span>
+        Download Resume
+       </span>
+      </a>
+      -->
+      <!-- Style 2: Gradient Background -->
+      <a class="flex items-center space-x-1 bg-gradient-to-r from-[#de1e4c] to-[#c01a43] text-white rounded px-3 py-1 hover:shadow-md transition-all duration-300 social-link" href="assets/resume.pdf" download>
+       <i class="fas fa-file-download">
+       </i>
+       <span>
+        Download Resume
+       </span>
+      </a>
      </div>
      <div class="mt-8 flex flex-col sm:flex-row sm:space-x-12">
       <div id="experience" class="flex-1">
@@ -250,7 +267,40 @@
       </div>
     </div>
   </footer>
+  <!-- Floating Resume Button with Tooltip -->
+  <div class="fixed bottom-6 right-6 z-50" style="z-index:9999;">
+    <div class="group">
+      <a href="assets/resume.pdf" download class="bg-[#de1e4c] text-white p-2.5 rounded-full shadow-2xl hover:bg-[#c01a43] transition-all duration-300 hover:scale-110 flex items-center">
+        <i class="fas fa-file-download text-lg"></i>
+      </a>
+      <div class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white px-2.5 py-0.5 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-download text-[10px]"></i>
+        Download Resume
+      </div>
+    </div>
+  </div>
   <script src="assets/main.js">
+  </script>
+  <script>
+    // Move floating button up when footer is in view
+    function adjustFloatingButton() {
+      const footer = document.querySelector('footer');
+      const floating = document.querySelector('.fixed.bottom-6.right-6');
+      if (!footer || !floating) return;
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      // If the footer is visible in the viewport
+      if (footerRect.top < windowHeight) {
+        // Move the button up by the amount the footer is visible
+        const overlap = windowHeight - footerRect.top + 24; // 24px for bottom-6
+        floating.style.transform = `translateY(-${overlap}px)`;
+      } else {
+        floating.style.transform = '';
+      }
+    }
+    window.addEventListener('scroll', adjustFloatingButton);
+    window.addEventListener('resize', adjustFloatingButton);
+    document.addEventListener('DOMContentLoaded', adjustFloatingButton);
   </script>
  </body>
 </html>
