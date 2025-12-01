@@ -1,0 +1,14 @@
+# Pod Disruption Budget for high availability
+# Ensures at least one pod is always available during disruptions
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: portfolio
+  labels:
+    app.kubernetes.io/name: portfolio
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: portfolio
+

@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="max-w-4xl">
+  <h1 class="font-serif-italic text-3xl font-semibold text-gray-800 leading-tight mb-2">
+    Blog
+    <span class="text-sm font-normal text-gray-500 ml-2">({{ len .Pages }} posts)</span>
+  </h1>
+  <p class="text-sm text-gray-600 mb-8">
+    Thoughts on DevOps, cloud infrastructure, Kubernetes, and engineering practices.
+  </p>
+
+  <!-- Tags filter -->
+  {{ $allTags := slice }}
+  {{ range .Pages }}
+    {{ range .Params.tags }}
+      {{ $allTags = $allTags | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $uniqueTags := uniq $allTags }}
+  
+  {{ if $uniqueTags }}
+  <div class="mb-6 flex flex-wrap gap-2">
+    {{ range $uniqueTags }}
+    <a href="/tags/{{ . | urlize }}/" class="text-xs px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded transition-colors">
+      {{ . }}
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- Blog posts list -->
+  <div class="space-y-1">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="flex items-baseline py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors -mx-2 px-2 rounded">
+      <span class="text-xs text-gray-500 w-24 flex-shrink-0">
+        {{ .Date.Format "Jan 02, 2006" }}
+      </span>
+      <a href="{{ .Permalink }}" class="text-sm text-blue-700 hover:underline flex-1">
+        {{ .Title }}
+      </a>
+    </div>
+    {{ else }}
+    <p class="text-gray-500 text-sm">No blog posts yet. Check back soon!</p>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+

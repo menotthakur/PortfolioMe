@@ -1,0 +1,49 @@
+# Ingress for external access
+# Configured for nginx-ingress controller with TLS
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio
+  labels:
+    app.kubernetes.io/name: portfolio
+  annotations:
+    # Nginx ingress specific
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # Enable gzip compression
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      gzip on;
+      gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
+    # Rate limiting (optional)
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    # Cert-manager for TLS (if using)
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - methakur.info
+        - www.methakur.info
+      secretName: portfolio-tls
+  rules:
+    - host: methakur.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
+                port:
+                  name: http
+    - host: www.methakur.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
+                port:
+                  name: http
+

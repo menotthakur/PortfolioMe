@@ -1,0 +1,107 @@
+# Deployment for the portfolio application
+# Production-ready with security contexts, probes, and resource limits
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+  labels:
+    app.kubernetes.io/name: portfolio
+    app.kubernetes.io/component: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: portfolio
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: portfolio
+        app.kubernetes.io/component: web
+      annotations:
+        # Force rolling update on config changes
+        checksum/config: "placeholder"
+    spec:
+      # Security context at pod level
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+
+      # Service account (create if needed for more permissions)
+      serviceAccountName: default
+      automountServiceAccountToken: false
+
+      containers:
+        - name: portfolio
+          image: methakur-portfolio:latest
+          imagePullPolicy: IfNotPresent
+          
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          
+          # Security context at container level
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false  # Nginx needs to write to some dirs
+            capabilities:
+              drop:
+                - ALL
+          
+          # Resource limits and requests
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          
+          # Liveness probe - is the container alive?
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          
+          # Readiness probe - is the container ready to serve traffic?
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          
+          # Startup probe - for slow starting containers
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 30
+
+      # Topology spread for high availability
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: portfolio
+

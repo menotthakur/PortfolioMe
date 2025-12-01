@@ -1,1 +1,36 @@
-.qodo
+# Hugo build output
+public/
+resources/_gen/
+
+# Hugo cache
+.hugo_build.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# Node (if using npm for assets)
+node_modules/
+
+# Python (legacy)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Docker
+*.log
+
+# Temporary files
+*.tmp
+*.bak

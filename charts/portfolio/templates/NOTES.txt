@@ -1,0 +1,26 @@
+🎉 Portfolio has been deployed!
+
+{{- if .Values.ingress.enabled }}
+Your portfolio is available at:
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  - https://{{ $host.host }}{{ .path }}
+  {{- end }}
+{{- end }}
+{{- end }}
+
+To check the status of the deployment:
+  kubectl get pods -l "app.kubernetes.io/name={{ include "portfolio.name" . }},app.kubernetes.io/instance={{ .Release.Name }}"
+
+To view the logs:
+  kubectl logs -l "app.kubernetes.io/name={{ include "portfolio.name" . }}" -f
+
+{{- if not .Values.ingress.enabled }}
+To access the portfolio locally, run:
+  kubectl port-forward svc/{{ include "portfolio.fullname" . }} 8080:{{ .Values.service.port }}
+  
+Then open http://localhost:8080 in your browser.
+{{- end }}
+
+📖 For more information, visit: https://github.com/menotthakur/portfolio
+

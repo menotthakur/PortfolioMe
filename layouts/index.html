@@ -1,0 +1,165 @@
+{{ define "main" }}
+<div class="flex flex-col lg:flex-row lg:space-x-12">
+  <section id="about" class="flex-1 max-w-full lg:max-w-3xl">
+    <h1 class="font-serif-italic text-3xl font-semibold text-gray-800 leading-tight">
+      Hey, I am Munish
+    </h1>
+    <p class="mt-1 font-serif-italic text-lg font-semibold" style="color: {{ .Site.Params.accentColor }};">
+      {{ .Site.Params.tagline }}
+    </p>
+    
+    <p class="mt-4 text-xs leading-relaxed text-gray-700 font-sans">
+      I am a DevOps Engineer with hands-on experience in containerization, Kubernetes, and cloud infrastructure. Currently working as a DevOps Consultant at Solytics Partners, I specialize in optimizing Docker images, managing Kubernetes clusters, and implementing robust CI/CD pipelines.
+    </p>
+    <p class="mt-2 text-xs leading-relaxed text-gray-700 font-sans">
+      With strong technical skills in Docker, Kubernetes, Terraform, Ansible, and cloud platforms (AWS, Azure, GCP), I approach infrastructure challenges with a focus on automation, scalability, and security. I've reduced Docker image sizes by 35% and build times by 75% through multi-stage builds and optimization techniques.
+    </p>
+    <p class="mt-2 text-xs leading-relaxed text-gray-700 font-sans">
+      Based in Hamirpur, Himachal Pradesh, I write about DevOps, cloud infrastructure, and engineering best practices on this blog.
+    </p>
+    
+    <!-- Social Links -->
+    <div class="mt-4 flex flex-wrap gap-2 text-xs font-sans">
+      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100 social-link" href="{{ .Site.Params.linkedin }}" target="_blank">
+        <i class="fab fa-linkedin-in text-blue-700"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a class="flex items-center space-x-1 border border-gray-400 rounded px-3 py-1 hover:bg-gray-100 social-link" href="{{ .Site.Params.github }}" target="_blank">
+        <i class="fab fa-github text-gray-800"></i>
+        <span>GitHub</span>
+      </a>
+      <a class="flex items-center space-x-1 bg-gradient-to-r from-[#de1e4c] to-[#c01a43] text-white rounded px-3 py-1 hover:shadow-md transition-all duration-300 social-link" href="{{ .Site.Params.resumePath }}" download>
+        <i class="fas fa-file-download"></i>
+        <span>Download Resume</span>
+      </a>
+    </div>
+
+    <!-- Experience and Projects Side by Side -->
+    <div class="mt-8 flex flex-col sm:flex-row sm:space-x-12">
+      <!-- Experience -->
+      <div id="experience" class="flex-1">
+        <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+          Experience
+          <a class="text-blue-700 font-normal hover:underline ml-1" href="#contact">· Contact me →</a>
+        </h2>
+        <div class="text-xs font-sans text-gray-700">
+          <p>My professional experience.</p>
+          <ul class="list-disc list-inside mt-1 space-y-2">
+            <li>
+              <span class="text-gray-500">May 2025 - Present ·</span>
+              <span class="text-blue-700">DevOps Consultant – Solytics Partners</span>
+              <p class="pl-6 mt-1">
+                Optimized Docker images (35% size reduction), set up K8s clusters with addons, integrated Filebeat for ELK logging, coordinated Terraform/Ansible/Azure deployments.
+              </p>
+            </li>
+            <li>
+              <span class="text-gray-500">Jan 2025 - April 2025 ·</span>
+              <span class="text-blue-700">DevOps Intern – Solytics Partners</span>
+              <p class="pl-6 mt-1">
+                Debugged EKS workloads, deployed Airflow/Keycloak/Filebeat, automated environment setup, set up self-hosted GitHub Actions runners.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div id="projects" class="flex-1 mt-6 sm:mt-0">
+        <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+          Projects
+          <a class="text-blue-700 font-normal hover:underline ml-1" href="{{ .Site.Params.github }}" target="_blank">· GitHub →</a>
+        </h2>
+        <div class="text-xs font-sans text-gray-700">
+          <p>Technical projects I've worked on.</p>
+          <ul class="list-disc list-inside mt-1 space-y-3">
+            <li class="project-item">
+              <a class="text-blue-700 hover:underline" href="#">JupyterHub on EC2</a>
+              <p class="pl-6 mt-1">
+                Deployed JupyterHub on AWS EC2 with systemd, optimized for 25GB+ datasets, Nginx reverse proxy for security.
+              </p>
+            </li>
+            <li class="project-item">
+              <a class="text-blue-700 hover:underline" href="#">Kubernetes Health Checker</a>
+              <p class="pl-6 mt-1">
+                Bash-based monitoring tool for pod/node failures with email alerts, automated with cron.
+              </p>
+            </li>
+            <li class="project-item">
+              <a class="text-blue-700 hover:underline" href="#">This Portfolio Site</a>
+              <p class="pl-6 mt-1">
+                Hugo + GitHub Pages with Docker/K8s/Helm manifests as DevOps proof-of-work.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Blog Posts -->
+    <div class="mt-8 flex flex-col sm:flex-row sm:space-x-12">
+      <div class="flex-1">
+        <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+          Recent blog posts
+          <a class="text-blue-700 font-normal hover:underline ml-1" href="/blog/">· Full archive →</a>
+        </h2>
+        <div class="text-xs font-sans text-gray-700">
+          <p>Things I have written recently.</p>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+            <li>
+              <span class="text-gray-500">{{ .Date.Format "Jan 02, 2006" }} ·</span>
+              <a class="text-blue-700 hover:underline" href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+            {{ else }}
+            <li class="text-gray-500">No posts yet. Stay tuned!</li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="flex-1 mt-6 sm:mt-0">
+        <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+          Certifications
+        </h2>
+        <div class="text-xs font-sans text-gray-700">
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li>AWS Certified Cloud Practitioner</li>
+            <li>Google Cloud Digital Leader</li>
+          </ul>
+          <p class="mt-2 font-semibold">Education</p>
+          <p>B.Tech CSE - VIT Bhopal (May 2025)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="mt-8 mb-8">
+      <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">Contact Me</h2>
+      <div class="text-xs font-sans text-gray-700">
+        <p>Interested in discussing DevOps opportunities or collaboration? Feel free to reach out.</p>
+        <div class="mt-3 space-y-3">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-envelope text-gray-600"></i>
+            <a class="text-blue-700 hover:underline" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-phone text-gray-600"></i>
+            <span>{{ .Site.Params.phone }}</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt text-gray-600"></i>
+            <span>{{ .Site.Params.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Image Sidebar -->
+  <aside class="mt-8 lg:mt-0 flex-shrink-0 w-full max-w-xs rounded-2xl overflow-hidden">
+    <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.author }}" class="w-full h-auto rounded-2xl object-cover profile-image">
+  </aside>
+</div>
+{{ end }}
+

@@ -1,0 +1,67 @@
+# Kustomize overlay for production environment
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: portfolio-prod
+
+# Base resources
+resources:
+  - ../../base
+
+# Namespace for prod
+namespace: portfolio
+
+# Name prefix for prod (optional, removed for cleaner names)
+# namePrefix: prod-
+
+# Common labels for prod
+commonLabels:
+  environment: production
+
+# Common annotations for prod
+commonAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8080"
+
+# Patches for prod-specific configurations
+patches:
+  # Increase resources for prod
+  - target:
+      kind: Deployment
+      name: portfolio
+    patch: |
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+  
+  # Production HPA settings
+  - target:
+      kind: HorizontalPodAutoscaler
+      name: portfolio
+    patch: |
+      - op: replace
+        path: /spec/minReplicas
+        value: 2
+      - op: replace
+        path: /spec/maxReplicas
+        value: 10
+
+# Use production image from GitHub Container Registry
+images:
+  - name: methakur-portfolio
+    newName: ghcr.io/menotthakur/portfolio
+    newTag: latest
+
+# ConfigMap generator (if needed)
+# configMapGenerator:
+#   - name: portfolio-config
+#     literals:
+#       - ENV=production
+

@@ -1,0 +1,71 @@
+baseURL = "https://methakur.info/"
+languageCode = "en-us"
+title = "Munish Thakur | DevOps Engineer"
+
+# Enable Git info for last modified dates
+enableGitInfo = true
+
+# Build settings
+[build]
+  writeStats = true
+
+[params]
+  author = "Munish Thakur"
+  description = "DevOps Engineer passionate about Kubernetes, Docker, and Cloud Infrastructure"
+  tagline = "passionate, dedicated, and curious DevOps engineer"
+  email = "thakurmunish2806@gmail.com"
+  phone = "+91 6284589934"
+  location = "Hamirpur, Himachal Pradesh"
+  
+  # Social links
+  github = "https://github.com/menotthakur"
+  linkedin = "https://www.linkedin.com/in/munish--thakur/"
+  
+  # Profile image
+  profileImage = "/images/Selfie.jpg"
+  
+  # Resume
+  resumePath = "/assets/resume.pdf"
+
+  # Theme color
+  accentColor = "#de1e4c"
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = true
+    lineNumbersInTable = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/#about"
+    weight = 1
+  [[menu.main]]
+    name = "Experience"
+    url = "/#experience"
+    weight = 2
+  [[menu.main]]
+    name = "Projects"
+    url = "/#projects"
+    weight = 3
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 4
+  [[menu.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 5
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+

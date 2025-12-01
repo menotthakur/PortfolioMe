@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+  
+  <style>
+    /* Custom font style for italic serif in header */
+    .font-serif-italic {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+    }
+    
+    /* Smooth scrolling for the whole page */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Hover effects for social links */
+    .social-link {
+      transition: transform 0.3s ease;
+    }
+    .social-link:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Subtle animation for profile image */
+    .profile-image {
+      transition: all 0.5s ease;
+    }
+    .profile-image:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transform: scale(1.02);
+    }
+    
+    /* Project item hover effect */
+    .project-item {
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    .project-item:hover {
+      border-left: 3px solid {{ .Site.Params.accentColor | default "#de1e4c" }};
+      padding-left: 5px;
+    }
+    
+    /* Image style for better presentation */
+    .content-image {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Blog post styles */
+    .blog-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+    .blog-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #374151;
+    }
+    .blog-content p {
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .blog-content li {
+      margin-bottom: 0.5rem;
+    }
+    .blog-content code {
+      background-color: #f3f4f6;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+    }
+    .blog-content pre {
+      background-color: #1e1e1e;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .blog-content pre code {
+      background-color: transparent;
+      padding: 0;
+      color: #e5e7eb;
+    }
+    .blog-content a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .blog-content a:hover {
+      color: #1d4ed8;
+    }
+    .blog-content blockquote {
+      border-left: 4px solid {{ .Site.Params.accentColor | default "#de1e4c" }};
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+
+    /* Background color matching Arpit's style */
+    body {
+      background-color: #fdf6f0;
+    }
+  </style>
+  {{ block "head" . }}{{ end }}
+</head>
+<body class="text-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <header class="flex justify-between items-center py-4 border-b border-gray-300">
+      <a href="/" class="font-serif-italic text-lg font-normal hover:opacity-80 transition-opacity">
+        Munish Thakur
+      </a>
+      <nav class="text-xs font-bold space-x-6">
+        {{ range .Site.Menus.main }}
+        <a class="hover:underline" href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mt-8">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-6 border-t border-gray-300 text-xs text-gray-700 w-full mt-12" style="background-color: #fbe2e8;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          © {{ .Site.Params.author }}, {{ now.Year }} | DevOps Engineer
+        </div>
+        <div class="flex space-x-4">
+          <a class="hover:text-blue-700" href="{{ .Site.Params.github }}" target="_blank">GitHub</a>
+          <a class="hover:text-blue-700" href="{{ .Site.Params.linkedin }}" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Resume Button -->
+  <div class="fixed bottom-6 right-6 z-50" id="floating-resume">
+    <div class="group">
+      <a href="{{ .Site.Params.resumePath }}" download class="bg-[#de1e4c] text-white p-2.5 rounded-full shadow-2xl hover:bg-[#c01a43] transition-all duration-300 hover:scale-110 flex items-center">
+        <i class="fas fa-file-download text-lg"></i>
+      </a>
+      <div class="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white px-2.5 py-0.5 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-download text-[10px]"></i>
+        Download Resume
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Move floating button up when footer is in view
+    function adjustFloatingButton() {
+      const footer = document.querySelector('footer');
+      const floating = document.getElementById('floating-resume');
+      if (!footer || !floating) return;
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      if (footerRect.top < windowHeight) {
+        const overlap = windowHeight - footerRect.top + 24;
+        floating.style.transform = `translateY(-${overlap}px)`;
+      } else {
+        floating.style.transform = '';
+      }
+    }
+    window.addEventListener('scroll', adjustFloatingButton);
+    window.addEventListener('resize', adjustFloatingButton);
+    document.addEventListener('DOMContentLoaded', adjustFloatingButton);
+  </script>
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>
+

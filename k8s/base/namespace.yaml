@@ -1,0 +1,9 @@
+# Namespace for the portfolio application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: portfolio
+  labels:
+    app.kubernetes.io/name: portfolio
+    app.kubernetes.io/managed-by: kustomize
+

@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Hugo output (will be rebuilt)
+public/
+resources/_gen/
+
+# Documentation
+README.md
+*.md
+!content/**/*.md
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files (not needed in image)
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Kubernetes manifests (not needed in image)
+k8s/
+charts/
+argocd/
+
+# CI/CD
+.github/
+
+# Development files
+*.log
+*.tmp
+.env*
+
+# Python (legacy)
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.lock
+pyproject.toml
+
