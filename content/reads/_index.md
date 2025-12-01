@@ -1,0 +1,26 @@
+---
+title: "Reads"
+description: "Articles and resources I recommend"
+articles:
+  - title: "The Twelve-Factor App"
+    source: "12factor.net"
+    url: "https://12factor.net/"
+    description: "Methodology for building modern SaaS apps"
+  - title: "Kubernetes Best Practices"
+    source: "Google Cloud Blog"
+    url: "https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-organizing-with-namespaces"
+    description: "Organizing with Namespaces"
+  - title: "Docker Security Best Practices"
+    source: "Snyk"
+    url: "https://snyk.io/blog/10-docker-image-security-best-practices/"
+    description: "10 Docker image security best practices"
+  - title: "GitOps: What You Need to Know"
+    source: "WeaveWorks"
+    url: "https://www.weave.works/technologies/gitops/"
+    description: "Introduction to GitOps principles"
+  - title: "SRE Book"
+    source: "Google"
+    url: "https://sre.google/sre-book/table-of-contents/"
+    description: "Site Reliability Engineering by Google"
+---
+

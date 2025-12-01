@@ -95,8 +95,9 @@
       </div>
     </div>
 
-    <!-- Recent Blog Posts -->
+    <!-- Recent Blog Posts and Articles Side by Side -->
     <div class="mt-8 flex flex-col sm:flex-row sm:space-x-12">
+      <!-- Recent Blog Posts -->
       <div class="flex-1">
         <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
           Recent blog posts
@@ -117,8 +118,26 @@
         </div>
       </div>
 
-      <!-- Certifications -->
+      <!-- Recommended Articles/Reads -->
       <div class="flex-1 mt-6 sm:mt-0">
+        {{ $reads := .Site.GetPage "/reads" }}
+        {{ if $reads }}
+        <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+          Recommended reads
+        </h2>
+        <div class="text-xs font-sans text-gray-700">
+          <p>Articles I recommend.</p>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            {{ range first 5 $reads.Params.articles }}
+            <li>
+              <a class="text-blue-700 hover:underline" href="{{ .url }}" target="_blank">{{ .title }}</a>
+              <span class="text-gray-500">· {{ .source }}</span>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ else }}
+        <!-- Certifications fallback -->
         <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
           Certifications
         </h2>
@@ -130,6 +149,28 @@
           <p class="mt-2 font-semibold">Education</p>
           <p>B.Tech CSE - VIT Bhopal (May 2025)</p>
         </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Certifications Row -->
+    <div class="mt-8">
+      <h2 class="font-sans font-bold text-xs text-gray-800 mb-2">
+        Certifications & Education
+      </h2>
+      <div class="text-xs font-sans text-gray-700 flex flex-wrap gap-4">
+        <span class="flex items-center gap-1">
+          <i class="fab fa-aws text-orange-500"></i>
+          AWS Cloud Practitioner
+        </span>
+        <span class="flex items-center gap-1">
+          <i class="fab fa-google text-blue-500"></i>
+          GCP Digital Leader
+        </span>
+        <span class="flex items-center gap-1">
+          <i class="fas fa-graduation-cap text-gray-600"></i>
+          B.Tech CSE - VIT Bhopal (2025)
+        </span>
       </div>
     </div>
 
@@ -162,4 +203,3 @@
   </aside>
 </div>
 {{ end }}
-

@@ -135,9 +135,13 @@
       <a href="/" class="font-serif-italic text-lg font-normal hover:opacity-80 transition-opacity">
         Munish Thakur
       </a>
-      <nav class="text-xs font-bold space-x-6">
+      <nav class="text-xs space-x-6">
         {{ range .Site.Menus.main }}
-        <a class="hover:underline" href="{{ .URL }}">{{ .Name }}</a>
+        {{ if eq .Name "Blog" }}
+        <a class="font-bold text-[#de1e4c] hover:underline border-b-2 border-[#de1e4c] pb-0.5" href="{{ .URL }}">{{ .Name }}</a>
+        {{ else }}
+        <a class="font-bold hover:underline" href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
         {{ end }}
       </nav>
     </header>
