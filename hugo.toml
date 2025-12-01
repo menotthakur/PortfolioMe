@@ -2,8 +2,8 @@ baseURL = "https://methakur.info/"
 languageCode = "en-us"
 title = "Munish Thakur | DevOps Engineer"
 
-# Enable Git info for last modified dates
-enableGitInfo = true
+# Disable Git info (causes issues in Docker builds without .git)
+enableGitInfo = false
 
 # Build settings
 [build]

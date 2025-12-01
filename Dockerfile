@@ -17,7 +17,7 @@ WORKDIR /src
 COPY . .
 
 # Build the site with optimizations
-RUN hugo --gc --minify
+RUN hugo --gc --minify --ignoreCache
 
 # =============================================================================
 # Stage 2: Production server with Nginx
