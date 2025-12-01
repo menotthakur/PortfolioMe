@@ -1,10 +1,10 @@
 {{ define "main" }}
 <div class="max-w-4xl">
-  <h1 class="font-serif-italic text-3xl font-semibold text-gray-800 leading-tight mb-2">
+  <h1 class="font-serif-italic text-4xl font-semibold text-gray-900 leading-tight mb-2">
     Blog
-    <span class="text-sm font-normal text-gray-500 ml-2">({{ len .Pages }} posts)</span>
+    <span class="text-lg font-normal text-gray-400 ml-3">({{ len .Pages }} posts)</span>
   </h1>
-  <p class="text-sm text-gray-600 mb-8">
+  <p class="text-base text-gray-600 mb-10">
     Thoughts on DevOps, cloud infrastructure, Kubernetes, and engineering practices.
   </p>
 
@@ -18,9 +18,9 @@
   {{ $uniqueTags := uniq $allTags }}
   
   {{ if $uniqueTags }}
-  <div class="mb-6 flex flex-wrap gap-2">
+  <div class="mb-8 flex flex-wrap gap-2">
     {{ range $uniqueTags }}
-    <a href="/tags/{{ . | urlize }}/" class="text-xs px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded transition-colors">
+    <a href="/tags/{{ . | urlize }}/" class="text-sm px-4 py-1.5 bg-gray-100 hover:bg-accent hover:text-white rounded-full transition-all font-medium text-gray-600">
       {{ . }}
     </a>
     {{ end }}
@@ -30,18 +30,17 @@
   <!-- Blog posts list -->
   <div class="space-y-1">
     {{ range .Pages.ByDate.Reverse }}
-    <div class="flex items-baseline py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors -mx-2 px-2 rounded">
-      <span class="text-xs text-gray-500 w-24 flex-shrink-0">
+    <div class="flex items-baseline py-3 border-b border-gray-100 hover:bg-accent/5 transition-colors -mx-4 px-4 rounded-lg">
+      <span class="text-sm text-gray-400 w-28 flex-shrink-0">
         {{ .Date.Format "Jan 02, 2006" }}
       </span>
-      <a href="{{ .Permalink }}" class="text-sm text-blue-700 hover:underline flex-1">
+      <a href="{{ .Permalink }}" class="text-base text-accent hover:underline font-medium flex-1">
         {{ .Title }}
       </a>
     </div>
     {{ else }}
-    <p class="text-gray-500 text-sm">No blog posts yet. Check back soon!</p>
+    <p class="text-gray-500">No blog posts yet. Check back soon!</p>
     {{ end }}
   </div>
 </div>
 {{ end }}
-
