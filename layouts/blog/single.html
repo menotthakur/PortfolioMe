@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="flex flex-col lg:flex-row lg:space-x-16">
+<div class="flex flex-col lg:flex-row lg:space-x-24">
   <!-- Main Content -->
   <article class="flex-1 max-w-full lg:max-w-2xl">
     <!-- Breadcrumb -->
@@ -83,9 +83,9 @@
     </footer>
   </article>
 
-  <!-- Author Sidebar -->
-  <aside class="mt-12 lg:mt-0 flex-shrink-0 w-full lg:w-80">
-    <div class="lg:sticky lg:top-8 bg-white/50 rounded-2xl p-6 border border-gray-100">
+  <!-- Author Sidebar - pushed further right -->
+  <aside class="mt-12 lg:mt-0 flex-shrink-0 w-full lg:w-72 lg:ml-8">
+    <div class="lg:sticky lg:top-8 bg-white/60 rounded-2xl p-6 border border-gray-100 shadow-sm">
       <!-- Author Photo -->
       <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.author }}" class="w-32 h-32 rounded-2xl object-cover mx-auto shadow-md">
       

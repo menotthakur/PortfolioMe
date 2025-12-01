@@ -30,15 +30,14 @@
   <!-- Blog posts list -->
   <div class="space-y-1">
     {{ range .Pages.ByDate.Reverse }}
-    <a href="{{ .Permalink }}" class="flex items-baseline py-4 border-b border-gray-100 hover:bg-accent/5 transition-colors -mx-4 px-4 rounded-lg group">
+    <div class="flex items-baseline py-3 border-b border-gray-100 hover:bg-accent/5 transition-colors -mx-4 px-4 rounded-lg">
       <span class="text-sm text-gray-400 w-28 flex-shrink-0">
         {{ .Date.Format "Jan 02, 2006" }}
       </span>
-      <span class="text-base text-gray-800 group-hover:text-accent transition-colors font-medium flex-1">
+      <a href="{{ .Permalink }}" class="text-base text-accent hover:underline font-medium flex-1">
         {{ .Title }}
-      </span>
-      <span class="text-gray-300 group-hover:text-accent group-hover:translate-x-1 transition-all ml-4">→</span>
-    </a>
+      </a>
+    </div>
     {{ else }}
     <p class="text-gray-500">No blog posts yet. Check back soon!</p>
     {{ end }}
