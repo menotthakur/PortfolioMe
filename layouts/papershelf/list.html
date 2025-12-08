@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="max-w-4xl">
+  <!-- Page header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
+    <h1 class="font-serif-italic text-4xl font-semibold text-gray-900 leading-tight">
+      Papershelf
+      <span class="text-lg font-normal text-gray-400 ml-3">
+        ({{ if .Params.count }}{{ .Params.count }}{{ else }}{{ len .Params.papers }}{{ end }})
+      </span>
+    </h1>
+  </div>
+
+  <!-- Intro content from the page body -->
+  <div class="text-base text-gray-700 leading-relaxed mb-10 space-y-4">
+    {{ .Content }}
+  </div>
+
+  <!-- Research work section -->
+  {{ with .Params.research_work }}
+  <section class="mb-10">
+    <h2 class="font-semibold text-xl text-gray-900 mb-3">
+      Research work
+    </h2>
+    <p class="text-gray-600 mb-3">
+      Independent experiments, deep dives, and hands-on explorations that I’ve done myself.
+    </p>
+    <ul class="list-disc pl-6 space-y-1 text-sm text-gray-800">
+      {{ range . }}
+      <li>
+        {{ if .url }}
+        <a href="{{ .url }}" class="text-accent hover:underline font-medium" target="_blank" rel="noreferrer">
+          {{ .title }}
+        </a>
+        {{ else }}
+        <span class="font-medium text-gray-900">{{ .title }}</span>
+        {{ end }}
+        {{ with .note }}
+        <span class="text-gray-600">– {{ . }}</span>
+        {{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <!-- Papers I read section -->
+  {{ with .Params.papers }}
+  <section>
+    <h2 class="font-semibold text-xl text-gray-900 mb-3">
+      Papers I read
+    </h2>
+    <p class="text-gray-600 mb-4">
+      I regularly read papers and long-form posts using AI-assisted workflows (Gemini, LLM tools, etc.).
+      This is where I track what I’ve gone through and what I found interesting.
+    </p>
+    <ul class="space-y-1 text-sm text-gray-800">
+      {{ range . }}
+      <li class="flex items-baseline">
+        <span class="mr-2 text-accent">•</span>
+        <div>
+          {{ if .url }}
+          <a href="{{ .url }}" class="text-accent hover:underline font-medium" target="_blank" rel="noreferrer">
+            {{ .title }}
+          </a>
+          {{ else }}
+          <span class="font-medium text-gray-900">{{ .title }}</span>
+          {{ end }}
+          {{ with .note }}
+          <span class="text-gray-600">– {{ . }}</span>
+          {{ end }}
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</div>
+{{ end }}
+
+

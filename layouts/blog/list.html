@@ -1,11 +1,20 @@
 {{ define "main" }}
 <div class="max-w-4xl">
-  <h1 class="font-serif-italic text-4xl font-semibold text-gray-900 leading-tight mb-2">
-    Blog
-    <span class="text-lg font-normal text-gray-400 ml-3">({{ len .Pages }} posts)</span>
-  </h1>
-  <p class="text-base text-gray-600 mb-10">
-    Thoughts on DevOps, cloud infrastructure, Kubernetes, and engineering practices.
+  <!-- Header row: title + RSS button (Arpit-style) -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+    <h1 class="font-serif-italic text-4xl font-semibold text-gray-900 leading-tight">
+      Blogs
+      <span class="text-lg font-normal text-gray-400 ml-3">
+        ({{ len .Pages }} posts)
+      </span>
+    </h1>
+    <a href="/blog/index.xml" class="inline-flex items-center px-4 py-2 rounded border border-accent text-sm font-medium text-accent bg-white hover:bg-accent hover:text-white transition-colors">
+      Subscribe RSS Feed
+    </a>
+  </div>
+
+  <p class="text-base text-gray-600 mb-8">
+    Every week I document my learnings around DevOps, cloud infrastructure, Kubernetes, and engineering practices.
   </p>
 
   <!-- Tags filter -->

@@ -202,6 +202,34 @@
       font-weight: 600;
     }
 
+    /* Table of contents styles */
+    .toc ul {
+      list-style: none;
+      padding-left: 0.5rem;
+    }
+    .toc li {
+      margin-bottom: 0.25rem;
+    }
+    .toc > ul > li {
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .toc a {
+      display: inline-block;
+      color: #4b5563;
+      font-size: 0.875rem;
+      text-decoration: none;
+    }
+    .toc a:hover {
+      color: #de1e4c;
+    }
+    .toc ul ul {
+      padding-left: 0.75rem;
+      border-left: 1px dashed #e5e7eb;
+      margin-top: 0.15rem;
+      padding-top: 0.15rem;
+    }
+
     /* Mobile menu */
     .mobile-menu {
       display: none;
@@ -247,6 +275,7 @@
 <body class="text-gray-800">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
+    {{ $currentPage := . }}
     <header class="flex justify-between items-center py-5 border-b border-gray-200">
       <a href="/" class="font-serif-italic text-xl font-semibold hover:text-accent transition-colors">
         Munish Thakur
@@ -255,7 +284,8 @@
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-8 text-sm">
         {{ range .Site.Menus.main }}
-        {{ if eq .Name "Blog" }}
+        {{ $isCurrent := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+        {{ if $isCurrent }}
         <a class="font-semibold text-accent border-b-2 border-accent pb-1 hover:text-accent-dark transition-colors" href="{{ .URL }}">{{ .Name }}</a>
         {{ else }}
         <a class="font-medium text-gray-600 hover:text-gray-900 link-hover transition-colors" href="{{ .URL }}">{{ .Name }}</a>
@@ -274,7 +304,8 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-menu md:hidden flex-col py-4 space-y-3 border-b border-gray-200" id="mobile-menu">
       {{ range .Site.Menus.main }}
-      {{ if eq .Name "Blog" }}
+      {{ $isCurrent := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+      {{ if $isCurrent }}
       <a class="block font-semibold text-accent text-base py-2" href="{{ .URL }}">{{ .Name }}</a>
       {{ else }}
       <a class="block font-medium text-gray-600 hover:text-gray-900 text-base py-2" href="{{ .URL }}">{{ .Name }}</a>
